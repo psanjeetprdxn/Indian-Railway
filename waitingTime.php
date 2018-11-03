@@ -24,20 +24,21 @@ function waitingTime(array $tickets, int $p)
     /*$i is used to track index of queue*/
     /*INITIALLLY TIME IS ZERO*/
     $time = 0;
-    /*COUNTS TIME (IN SECONDS) FOR THE PEOPLE STANDING IN FRONT THE PERSON*/
-    for ($i = 0; $i <= $p; $i++) {
-        if ($tickets[$i] <= $tickets[$p]) {
-            $time += $tickets[$i];
-        } else {
-            $time += $tickets[$p];
-        }
-    }
-    /*COUNTS TIME (IN SECONDS) FOR THE PEOPLE STANDING BEHIND THE PERSON*/
-    for ($i = $p + 1; $i < count($tickets); $i++) {
-        if ($tickets[$i] >= $tickets[$p]) {
-            $time += $tickets[$p] - 1;
-        } else {
-            $time += $tickets[$i];
+    
+    /*ITERATING THROUGH QUEUE*/
+    for ($i = 0; $i < count($tickets); $i++) {
+        if ($i <= $p) {                             /*COUNTS TIME (IN SECONDS) FOR THE PEOPLE STANDING IN FRONT THE PERSON*/
+            if ($tickets[$i] <= $tickets[$p]) {
+                $time += $tickets[$i];
+            } else {
+                $time += $tickets[$p];
+            }
+        } else {                                    /*COUNTS TIME (IN SECONDS) FOR THE PEOPLE STANDING BEHIND THE PERSON*/
+            if ($tickets[$i] >= $tickets[$p]) {
+                $time += $tickets[$p] - 1;
+            } else {
+                $time += $tickets[$i];
+            }
         }
     }
     return $time;
