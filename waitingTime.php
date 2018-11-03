@@ -11,12 +11,12 @@ function waitingTime(array $tickets, int $p)
     /*CHECKS IF THE VALUE PASSED IN AN ARRAY IS A VALID INTEGER*/
     if (!checkInt($tickets)) {
         return "Value must be an Integer and not a decimal. Eg (1,2,,8,100)";
-        exit;
+        return;
     }
     /*CHECKS IF THE POSITION IS VALID IN A QUEUE*/
     if (!(($p < count($tickets)) and $p >= 0)) {
         echo "Not a valid position in a queue.";
-        exit;
+        return;
     }
 
     /*Size of $tickets indicates how long is the queue and each value indiacates how much ticket they want to buy*/
